@@ -1,8 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './style.css';
 import YouTube from 'react-youtube';
 import MicRecorder from 'mic-recorder-to-mp3';
+import { AnimatedText } from "./AnimatedText";
 import { Container, Row, Col } from 'reactstrap';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
@@ -65,7 +67,11 @@ class AyodhyaJi extends React.Component {
         <p>
          <h1> अयोध्या जी में आपका स्वागत है | Welcome to Ayodhya Ji</h1>
         </p>
-
+        <AnimatedText 
+          textColor="#cd122d"
+          overlayColor="#fdc52c"
+      > Jai Siya Raam
+      </Animated Text>
 
       {/* <span className="myClass" style={{float : 'left', paddingRight : '5px'}} > </span> */}
 
