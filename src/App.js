@@ -1,9 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+//import React from 'react';
+import logo from './ram-mandir.jpg';
 import './App.css';
 import YouTube from 'react-youtube';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { Container, Row, Col } from 'reactstrap';
+
+import React, { useState, useEffect } from "react";
+import {
+  withGoogleMap,
+  withScriptjs,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from "react-google-maps";
+import { render } from 'react-dom';
+import Gallery from 'react-grid-gallery';
+
+
+const IMAGES =
+[{
+        src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
+        thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
+        thumbnailWidth: 320,
+        thumbnailHeight: 174,
+        isSelected: true,
+        caption: "After Rain (Jeshu John - designerspics.com)"
+},
+{
+        src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
+        thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
+        thumbnailWidth: 320,
+        thumbnailHeight: 212,
+        tags: [{value: "Ocean", title: "Ocean"}, {value: "People", title: "People"}],
+        caption: "Boats (Jeshu John - designerspics.com)"
+},
+
+{
+        src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
+        thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
+        thumbnailWidth: 320,
+        thumbnailHeight: 212
+}]
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -58,51 +95,33 @@ class AyodhyaJi extends React.Component {
       <div className="App">
 
       <header className="Mandir-header">
-      <head>
-        <title>अयोध्या जी में आपका स्वागत है | Welcome to Ayodhya Ji</title>
-      </head>
-
         <p>
          <h1> अयोध्या जी में आपका स्वागत है | Welcome to Ayodhya Ji</h1>
         </p>
-
-
-      {/* <span className="myClass" style={{float : 'left', paddingRight : '5px'}} > </span> */}
-
-        <Container>
-          <Row>
-            <Col><img src={require('./ram-mandir.jpg')}/></Col>
-            <Col>        <p>
-          <h1>
-            {/* <b>Let's make World Record of writing and chanting Jai Shri RAM</b>
-            <br/> */}
-            <b>आइए जय श्री राम लिखने और जप करने का विश्व रिकॉर्ड बनाएं</b>
-            <br/>
-            <p>
-              Current Counter {this.state.countstart}
-            </p>
-          </h1>
-        </p></Col>
-            {/* <Col>
-              <iframe src='https://www.youtube.com/watch?v=lqNpCH-xcG'
-              frameborder='0'
-              allow='autoplay; encrypted-media'
-              title='video'
-              />
-        </Col> */}
-          </Row>
-        </Container>
 
         <div>
           <button onClick={this.start} disabled={this.state.isRecording}>Press kare aur bhagwan RAM ka naam le | प्रेस करे और भगवान राम का नाम ले</button>
 
           <button onClick={this.stop} disabled={!this.state.isRecording}>Astuti Ke baad yaha pe click kare | अपनी प्रार्थना के बाद यहां दबाएं</button>
           </div>
+          <p>
+
+
+
+          </p>
           <div>
             <b>अपनी प्रार्थना सुनो</b>
-            
+            <p>
+            </p>
+
             <audio src={this.state.blobURL} controls="controls"/>
           </div>
+
+          <h2>
+          बोलो सिया पति राम चंद्र की जय….!!
+          </h2>
+
+          <img src={require('./thanks.jpeg')}/>
 
       </header>
     </div>

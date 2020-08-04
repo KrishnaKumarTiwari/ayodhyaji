@@ -9,6 +9,8 @@
     "mic-recorder-to-mp3": "^2.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-google-maps": "^9.4.5",
+    "react-grid-gallery": "^0.5.5",
     "react-scripts": "3.4.1",
     "react-youtube": "^7.11.3",
     "reactstrap": "^8.5.1"
