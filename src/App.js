@@ -1,5 +1,5 @@
 //import React from 'react';
-import logo from './ram-mandir.jpg';
+import logo from './logo.jpg';
 import './App.css';
 import YouTube from 'react-youtube';
 import MicRecorder from 'mic-recorder-to-mp3';
@@ -42,7 +42,16 @@ const IMAGES =
         thumbnailHeight: 212
 }]
 
-const Mp3Recorder = new MicRecorder({ bitRate: 128 });
+//const Mp3Recorder = new MicRecorder({ bitRate: 128 });
+
+  const opts = {
+      height: '390',
+      width: '640',
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 1,
+      },
+    };
 
 class AyodhyaJi extends React.Component {
   constructor(props){
@@ -53,80 +62,76 @@ class AyodhyaJi extends React.Component {
       countstart:15682,
       isBlocked: false,
     };
+
   }
-
-  start = () => {
-    if (this.state.isBlocked) {
-      console.log('Permission Denied');
-    } else {
-      Mp3Recorder
-        .start()
-        .then(() => {
-          this.setState({ isRecording: true });
-        }).catch((e) => console.error(e));
-    }
-  };
-
-  stop = () => {
-    Mp3Recorder
-      .stop()
-      .getMp3()
-      .then(([buffer, blob]) => {
-        const blobURL = URL.createObjectURL(blob)
-        this.setState({ blobURL, isRecording: false });
-      }).catch((e) => console.log(e));
-  };
-
-  componentDidMount() {
-    navigator.getUserMedia({ audio: true },
-      () => {
-        console.log('Permission Granted');
-        this.setState({ isBlocked: false });
-      },
-      () => {
-        console.log('Permission Denied');
-        this.setState({ isBlocked: true })
-      },
-    );
-  }
+//
+//  start = () => {
+//    if (this.state.isBlocked) {
+//      console.log('Permission Denied');
+//    } else {
+//      Mp3Recorder
+//        .start()
+//        .then(() => {
+//          this.setState({ isRecording: true });
+//        }).catch((e) => console.error(e));
+//    }
+//  };
+//
+//  stop = () => {
+//    Mp3Recorder
+//      .stop()
+//      .getMp3()
+//      .then(([buffer, blob]) => {
+//        const blobURL = URL.createObjectURL(blob)
+//        this.setState({ blobURL, isRecording: false });
+//      }).catch((e) => console.log(e));
+//  };
+//
+//  componentDidMount() {
+//    navigator.getUserMedia({ audio: true },
+//      () => {
+//        console.log('Permission Granted');
+//        this.setState({ isBlocked: false });
+//      },
+//      () => {
+//        console.log('Permission Denied');
+//        this.setState({ isBlocked: true })
+//      },
+//    );
+//  }
 
   render(){
-    return (
-      <div className="App">
+     return (
+       <div className="App">
 
-      <header className="Mandir-header">
-        <p>
-         <h1> अयोध्या जी में आपका स्वागत है | Welcome to Ayodhya Ji</h1>
-        </p>
+       <header className="Mandir-header">
+         <p>
+          <h1> अयोध्या जी में आपका स्वागत है | Welcome to Ayodhya Ji</h1>
+         </p>
 
-        <div>
-          <button onClick={this.start} disabled={this.state.isRecording}>Press kare aur bhagwan RAM ka naam le | प्रेस करे और भगवान राम का नाम ले</button>
+           <p>
 
-          <button onClick={this.stop} disabled={!this.state.isRecording}>Astuti Ke baad yaha pe click kare | अपनी प्रार्थना के बाद यहां दबाएं</button>
-          </div>
-          <p>
+           </p>
+
+           <h2>
+           बोलो सिया पति राम चंद्र की जय….!!
+           </h2>
+
+         <div id = "services">
+                 <YouTube videoId="Oh_06IWPSgk" opts={opts} onReady={this._onReady} />
+         </div>
 
 
+       </header>
 
-          </p>
-          <div>
-            <b>अपनी प्रार्थना सुनो</b>
-            <p>
-            </p>
-
-            <audio src={this.state.blobURL} controls="controls"/>
-          </div>
-
-          <h2>
-          बोलो सिया पति राम चंद्र की जय….!!
-          </h2>
-
-          <img src={require('./thanks.jpeg')}/>
-
-      </header>
-    </div>
-    );
-  }
+       <footer>
+          <h4>
+            Developed in short notice by Ram Bhakts | Stay Tuned!
+          </h4>
+       </footer>
+     </div>
+     );
+   }
 }
 
 export default AyodhyaJi;
